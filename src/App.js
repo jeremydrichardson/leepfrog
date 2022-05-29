@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import { SiteNav } from "./components/SiteNav";
+import { useCampuses } from "./hooks/useCampuses";
 
 function App() {
+  const [campus, setCampus] = useState("");
+  const campuses = useCampuses();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <select
+        name="campus"
+        value={campus}
+        onChange={(e) => {
+          setCampus(e.currentTarget.value);
+        }}
+      >
+        <option value="">Select a campus...</option>
+        {campuses.map((campus) => (
+          <option value={campus}>{campus}</option>
+        ))}
+      </select>
+      <SiteNav campus={campus} />
     </div>
   );
 }
