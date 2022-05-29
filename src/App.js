@@ -18,7 +18,9 @@ function App() {
       >
         <option value="">Select a campus...</option>
         {campuses.map((campus) => (
-          <option value={campus}>{campus}</option>
+          <option value={campus} key={campus}>
+            {campus}
+          </option>
         ))}
       </select>
       <SiteNav campus={campus} />
